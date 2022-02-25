@@ -3,7 +3,7 @@ import React from 'react';
 const ListadoGastos = ({ gastos }) => {
 	return (
 		<div>
-			<p>DESDE LISTADO GASTOS</p>
+			<p>{gastos.length ? 'gastos' : 'no hay gastos aun'}</p>
 		</div>
 	);
 };

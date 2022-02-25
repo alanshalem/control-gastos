@@ -26,13 +26,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
 			return;
 		}
 
-		const gasto = {
-			nombre,
-			cantidad,
-			categoria,
-		};
-
-		guardarGasto(gasto);
+		guardarGasto({ nombre, cantidad, categoria });
 		console.log('Formulario enviado');
 	};
 
