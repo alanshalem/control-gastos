@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import Header from './components/Header';
-import Modal from './components/Modal';
-import IconoNuevoGasto from './img/nuevo-gasto.svg';
-import { generarId } from './helpers';
-import ListadoGastos from './components/ListadoGastos';
+import { useState } from "react";
+import Header from "./components/Header";
+import ListadoGastos from "./components/ListadoGastos";
+import Modal from "./components/Modal";
+import { generarId } from "./helpers";
+import IconoNuevoGasto from "./img/nuevo-gasto.svg";
 
 function App() {
 	const [presupuesto, setPresupuesto] = useState(0);
@@ -16,7 +16,7 @@ function App() {
 
 	const handleNuevoGasto = (e) => {
 		e.preventDefault();
-		console.log('Nuevo gasto');
+		console.log("Nuevo gasto");
 		setModal(true);
 
 		setTimeout(() => {
@@ -26,19 +26,20 @@ function App() {
 
 	const guardarGasto = (gasto) => {
 		gasto.id = generarId();
+		gasto.fecha = Date.now();
 		setGastos([...gastos, gasto]);
-	
+
 		setAnimarModal(false);
 
 		setTimeout(() => {
 			setModal(false);
 		}, 500);
-
 	};
 
 	return (
-		<div>
+		<div className={modal ? "fijar" : ""}>
 			<Header
+				gastos={gastos}
 				presupuesto={presupuesto}
 				setPresupuesto={setPresupuesto}
 				isValidPresupuesto={isValidPresupuesto}
@@ -47,13 +48,13 @@ function App() {
 
 			{isValidPresupuesto && (
 				<>
-					<main className="contenido-principal">
+					<main className='contenido-principal'>
 						<ListadoGastos gastos={gastos} />
 					</main>
-					<div className="nuevo-gasto">
+					<div className='nuevo-gasto'>
 						<img
 							src={IconoNuevoGasto}
-							alt="Nuevo Gasto"
+							alt='Nuevo Gasto'
 							onClick={handleNuevoGasto}
 						/>
 					</div>
